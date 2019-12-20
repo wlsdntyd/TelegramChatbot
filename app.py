@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 token = config('TELEGRAM_BOT_TOKEN')
 chat_id = config('CHAT_ID')
-url = "https://api.telegram.org/bot"
+url = "https://api.telegram.org/bottoken/setwebhook?url"
 
 
 @app.route('/')
@@ -25,9 +25,9 @@ def send():
 @app.route(f'/{token}', methods=["POST"])
 def telegram():
     # chat_id = request.get_json.[][][]
-    if text == "로또" :
-        text
-    elif
+    # if text == "로또" :
+    #     text
+    # elif
     return "ok", 200
 
 
