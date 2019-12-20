@@ -1,9 +1,9 @@
 from decouple import config
 import requests
 
-token = config("TELEGRAM_TOKEN")
+token = config("TELEGRAM_BOT_TOKEN")
 url = "https://api.telegram.org/bot"
-ngrok_url = "https://34970601.ngrok.io"
+paw_url = "https://wlsdntyd.pythonanywhere.com"
 
-data = requests.get(f'{url}{token}/setwebhook?url={ngrok_url}/{token}')
-print(data)
+data = requests.get(f'{url}{token}/setwebhook?url={paw_url}/{token}')
+print(data.text)

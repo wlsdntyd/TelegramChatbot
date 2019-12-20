@@ -1,11 +1,12 @@
 from flask import Flask, render_template, request
 from decouple import config
+import random
 import requests
 app = Flask(__name__)
 
 token = config('TELEGRAM_BOT_TOKEN')
 chat_id = config('CHAT_ID')
-url = "https://api.telegram.org/bottoken/setwebhook?url"
+url = "https://api.telegram.org/bot"
 
 
 @app.route('/')
@@ -24,10 +25,19 @@ def send():
 
 @app.route(f'/{token}', methods=["POST"])
 def telegram():
-    # chat_id = request.get_json.[][][]
-    # if text == "로또" :
-    #     text
-    # elif
+    data = request.get_json()
+    chat_id = data['message']['chat']['id']
+    text = data['message']['text']
+
+    if text == "안녕":
+        return_text = "안녕하세요"
+    elif text == "로또":
+        numbers = range(1,46)
+        return_text = sorted(random.sample(numbers, 6))
+    else :
+        return_text = "지금 지원하는 채팅은 안녕입니다"
+
+    requests.get(f'{url}{token}/sendmessage?chat_id={chat_id}&text={return_text}')
     return "ok", 200
 
 
